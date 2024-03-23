@@ -16,12 +16,12 @@ class FileStorage:
 
         Return:
             returns dict of .__object
-        """
+        
         if cls is None:
             return list(self.__objects.values())
         else:
             return [obj for obj in self.__objects.values()
-                    if isinstance(obj, cls)]
+                    if isinstance(obj, cls)]"""
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
