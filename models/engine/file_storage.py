@@ -20,7 +20,8 @@ class FileStorage:
         if cls is None:
             return list(self.__objects.values())
         else:
-            return [for obj in self.__objects.values() if isinstance(obj, cls)]
+            return [obj for obj in self.__objects.values()
+                    if isinstance(obj, cls)]
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
