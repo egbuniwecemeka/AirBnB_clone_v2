@@ -20,7 +20,7 @@ class FileStorage:
         Return:
             returns dict of .__object
         """
-        dict = {}
+        dic = {}
 
         if cls:
             dictionary = self.__objects
@@ -28,8 +28,8 @@ class FileStorage:
                 token = key.replace('.', ' ')
                 token = shlex.split(token)
                 if (token[0] == cls.__name__):
-                    dict[key] = self.__objects[key]
-            return dict
+                    dic[key] = self.__objects[key]
+            return dic
         else:
             return self.__objects
 
