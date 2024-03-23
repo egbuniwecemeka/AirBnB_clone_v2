@@ -29,7 +29,7 @@ class FileStorage:
                 token = shlex.split(token)
                 if (token[0] == cls.__name__):
                     dic[key] = self.__objects[key]
-            return dic
+            return (dic)
         else:
             return self.__objects
 
