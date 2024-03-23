@@ -16,7 +16,8 @@ class FileStorage:
 
         Return:
             returns dict of .__object
-        
+        """
+        """
         if cls is None:
             return list(self.__objects.values())
         else:
