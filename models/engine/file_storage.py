@@ -17,17 +17,7 @@ class FileStorage:
         Return:
             returns dict of .__object
         """
-        dic = {}
-        if cls:
-            dictionary = self.__objects
-            for key in dictionary:
-                splits = key.replace('.', ' ')
-                splits = shlex.split(splits)
-                if (splits[0] == cls.__name__):
-                    dic[key] = self.__objects[key]
-            return (dic)
-        else:
-            return self.__objects
+        return FileStorage.__objects
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
@@ -62,12 +52,14 @@ class FileStorage:
             with open(FileStorage.__file_path, 'r') as f:
                 temp = json.load(f)
                 for key, val in temp.items():
-                        self.all()[key] = classes[val['__class__']](**val)
+                    self.all()[key] = classes[val['__class__']](**val)
         except FileNotFoundError:
             pass
 
     def delete(self, obj=None):
+        """ Deletes an obj from __object if present """
         if obj is None:
             return
-        if obj in self.__objects:
-            self.__objects.remove(obj)
+        key = obj.__class.__name + '.' + obj.id
+        if key in self.__objects:
+            self.__objects.remove(key)
