@@ -74,6 +74,7 @@ class FileStorage:
         """ Deletes an obj from __object if present """
         if obj is None:
             return
-        key = obj.__class.__name + '.' + obj.id
-        if key in self.__objects:
-            self.__objects.remove(key)
+
+        if obj:
+            key = "{}:{}".format(type(obj).__name__.obj.id)
+            del self.__objects[key]
