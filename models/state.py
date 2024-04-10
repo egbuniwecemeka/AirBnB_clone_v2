@@ -3,7 +3,7 @@
 from models.base_model import BaseModel
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
-from models import storage
+import models
 import shlex
 
 
@@ -15,7 +15,7 @@ class State(BaseModel):
     @property
     def cities(self):
         """return cities with the current state_id"""
-        objs = storage.all()
+        objs = models.storage.all()
         lista = []
         results = []
 
