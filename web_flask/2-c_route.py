@@ -1,31 +1,28 @@
 #!/usr/bin/python3
-"""
-    A python script that starts a Flask web application:
-    /: display “Hello HBNB!”
-    /hbnb: display “HBNB”
-    /c/<text>: display “C ” followed by the value of the text variable
-    (replace underscore _ symbols with a space )
-"""
+
+""" A flask application that returns HTML content """
+
 from flask import Flask
+
+# Creates flask instance
 app = Flask(__name__)
 
 
+# Route to a URL
 @app.route('/', strict_slashes=False)
 def home():
-    return "Hello HBNB!"
+    """ Returns HTML content """
+    string = "Hello HBNB!"
+    return f"{string}"
 
 
-@app.route('/hbnb', strict_slashes=False)
+# Route to a URL
+@app.route("/hbnb", strict_slashes=False)
 def hbnb():
-    return "HBNB"
-
-
-@app.route('/c/<text>', strict_slashes=False)
-def c(text):
-    # Replace spaces with underscore
-    replaced_text = text.replace('_', ' ')
-    return f"C {replaced_text}"
+    """ Returns HTML content """
+    string = "HBNB"
+    return f"{string}"
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
