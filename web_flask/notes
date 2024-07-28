@@ -1,0 +1,5 @@
+# To make serverpulicly available use;
+# flask run --host=0.0.0.0
+# Do this only when network users are trusted
+#
+# Enable debugging mode using "--debug" option
