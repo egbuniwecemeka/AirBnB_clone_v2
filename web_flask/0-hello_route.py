@@ -16,4 +16,5 @@ def hello():
 
 # run if script is executed directlly
 if __name__ == "__main__":
+    # Listen on 0.0.0.0 and port 5000
     app.run(host='0.0.0.0', port=5000)
