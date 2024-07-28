@@ -6,15 +6,17 @@ from flask import Flask
 
 app = Flask(__name__)
 
-
+# Routing to a URL
 @app.route('/', strict_slashes=False)
-def salute():
+def home():
+    """ Method returning HTML content """
     string = "Hello HBNB!"
     return f"{string}"
 
-
+# Routing a function to a URL
 @app.route("/hbnb", strict_slashes=False)
-def salute_type():
+def hbnb():
+    """ Method returning HTML content """
     string_type = "HBNB"
     return f"{salute_type}"
 
