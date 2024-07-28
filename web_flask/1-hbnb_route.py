@@ -11,7 +11,7 @@ app = Flask(__name__)
 @app.route('/', strict_slashes=False)
 def home():
     """ Method returning HTML content """
-    string = "Hello HBNB!\n"
+    string = "Hello HBNB!"
     return f"{string}"
 
 
@@ -19,7 +19,7 @@ def home():
 @app.route("/hbnb", strict_slashes=False)
 def hbnb():
     """ Method returning HTML content """
-    string_type = "HBNB\n"
+    string_type = "HBNB"
     return f"{string_type}"
 
 
