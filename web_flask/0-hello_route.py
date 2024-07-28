@@ -6,12 +6,13 @@ from flask import Flask
 # created an instance of Flask class
 app = Flask(__name__)
 
+
 # route tell Flask the URL that triggers our function.
 @app.route('/', strict_slashes=False)
-
 # Returns message to user browser. Default's HTML
 def hello():
     return "Hello HBNB!"
+
 
 # run if script is executed directlly
 if __name__ == "__main__":
