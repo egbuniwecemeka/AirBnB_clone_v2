@@ -15,20 +15,20 @@ def home():
     return f"{string}"
 
 
-# Routes to a URL thats mapped to a methods.(Meaniful URL/Better user experience) 
+# Routes to a URL of a method.(Meaniful URL / Better user experience)
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
     string = "HBNB"
     return f"{string}"
 
 
-# Routes to a URL as method and a variable as keyword argument
+# Routes to a URL of a method and uses variable as keyword argument
 @app.route('/c/<string:text>', strict_slashes=False)
 def c(text):
     return f"{text.replace('_', ' ')}"
 
 
-# Routes to a URL as method and a variable as keyword argument
+# Routes to a URL of a method and uses a variable as keyword argument
 @app.route('/python/<string:text>', strict_slashes=False)
 def python(text):
     text = "is cool"
