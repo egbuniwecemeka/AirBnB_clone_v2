@@ -12,7 +12,7 @@ app = Flask(__name__)
 @app.route('/', strict_slashes=False)
 def hello():
     """ Returns message to user browser. Default's HTML """
-    return "Hello HBNB!"
+    return "Hello HBNB!\n"
 
 
 # run if script is executed directlly

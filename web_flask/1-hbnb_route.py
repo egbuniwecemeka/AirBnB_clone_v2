@@ -10,15 +10,15 @@ app = Flask(__name__)
 @app.route('/', strict_slashes=False)
 def home():
     """ Method returning HTML content """
-    string = "Hello HBNB!"
+    string = "Hello HBNB!\n"
     return f"{string}"
 
 # Routing a function to a URL
 @app.route("/hbnb", strict_slashes=False)
 def hbnb():
     """ Method returning HTML content """
-    string_type = "HBNB"
-    return f"{salute_type}"
+    string_type = "HBNB\n"
+    return f"{string_type}"
 
 
 if __name__ == "__main__":
