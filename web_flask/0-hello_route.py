@@ -9,8 +9,8 @@ app = Flask(__name__)
 
 # route tell Flask the URL that triggers our function.
 @app.route('/', strict_slashes=False)
-# Returns message to user browser. Default's HTML
 def hello():
+    # Returns message to user browser. Default's HTML
     return "Hello HBNB!"
 
 
