@@ -1,41 +1,40 @@
 #!/usr/bin/python3
-"""
-    A python script thaat starts a Flask application:
-    /: display “Hello HBNB!”
-    /hbnb: display “HBNB”
-    /c/<text>: display “C ”, followed by the value of the text variable
-    (replace underscore _ symbols with a space) - default value of C is 'cool'
-    /python/<text>: display “Python ”, followed by the value of the text
-    variable (replace underscore _ symbols with a space)
-"""
+
+""" A flask application that returns HTML response """
+
 from flask import Flask
+
+# Creates the flass instance
 app = Flask(__name__)
 
 
+# Routes to a URL
 @app.route('/', strict_slashes=False)
 def home():
-    return "Hello HBNB!"
+    string = "Hello HBNB!"
+    return f"{string}"
 
 
+# Routes to a URL thats mapped to a methods.(Meaniful URL/Better user experience) 
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
-    return "HBNB"
+    string = "HBNB"
+    return f"{string}"
 
 
-@app.route('/c/<text>', strict_slashes=False)
+# Routes to a URL as method and a variable as keyword argument
+@app.route('/c/<string:text>', strict_slashes=False)
 def c(text):
-    # replace underscore with space
-    replaced_text = text.replace('_', ' ')
-    return f"C {replaced_text}"
+    return f"{text.replace('_', ' ')}"
 
 
-@app.route('/python/', defaults={'text': 'is cool'}, strict_slashes=False)
-@app.route('/python/<text>', strict_slashes=False)
+# Routes to a URL as method and a variable as keyword argument
+@app.route('/python/<string:text>', strict_slashes=False)
 def python(text):
-    # replace underscore with space
-    replaced_text = text.replace('_', ' ')
-    return f"Python {replaced_text}"
+    text = "is cool"
+    return f"Python {text.replace('_', ' ')}"
 
 
+# Runs if script is executed as main program
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
