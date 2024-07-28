@@ -29,7 +29,7 @@ def c(text):
 
 
 # Routes to a URL of a method and uses a variable as keyword argument
-@app.route('/python/', defaults={'text':'is cool'}, strict_slashes=False)
+@app.route('/python/', defaults={'text': 'is cool'}, strict_slashes=False)
 @app.route('/python/<string:text>', strict_slashes=False)
 def python(text):
     return f"Python {text.replace('_', ' ')}"
