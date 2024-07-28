@@ -26,10 +26,12 @@ def hbnb():
 
 
 # Route to a URL
-@app.route("/c/<string:text>", strict_slashes)
+@app.route("/c/<string:text>", strict_slashes=False)
 def c(text):
-    return f"C {escape(text.replace(_, " "))}"
+    """ Returns formatted replaced output """
+    return f"C {text.replace(_, ' ')}"
 
 
 if __name__ == "__main__":
+    """ Host and port parameter """
     app.run(host='0.0.0.0', port=5000, debug=True)
