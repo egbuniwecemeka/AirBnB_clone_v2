@@ -22,4 +22,5 @@ def hbnb():
 
 
 if __name__ == "__main__":
+    """ Runs on specified host and port """
     app.run(host='0.0.0.0', port=5000, debug=True)
