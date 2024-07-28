@@ -3,6 +3,7 @@
 """ A flask application that returns HTML content """
 
 from flask import Flask
+from markupsafe import escape
 
 # Creates flask instance
 app = Flask(__name__)
@@ -22,6 +23,12 @@ def hbnb():
     """ Returns HTML content """
     string = "HBNB"
     return f"{string}"
+
+
+# Route to a URL
+@app.route("/c/<string:text>", strict_slashes)
+def c(text):
+    return f"C {escape(text.replace(_, " "))}"
 
 
 if __name__ == "__main__":
