@@ -8,7 +8,7 @@ from flask import Flask
 app = Flask(__name__)
 
 
-# Routes to a URL
+# Routes to a root URL
 @app.route('/', strict_slashes=False)
 def home():
     string = "Hello HBNB!"
@@ -29,9 +29,8 @@ def c(text):
 
 
 # Routes to a URL of a method and uses a variable as keyword argument
-@app.route('/python/<string:text>', strict_slashes=False)
+@app.route('/python/<string:text>', defaults={'text':'is cool'}, strict_slashes=False)
 def python(text):
-    text = "is cool"
     return f"Python {text.replace('_', ' ')}"
 
 
