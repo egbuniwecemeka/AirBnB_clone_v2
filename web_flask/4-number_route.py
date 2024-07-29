@@ -49,4 +49,5 @@ def number(n):
 
 # Runs if script is executed as main program
 if __name__ == "__main__":
+    """ Host and Port identities """
     app.run(host='0.0.0.0', port=5000, debug=True)
