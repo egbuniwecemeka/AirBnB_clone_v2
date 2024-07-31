@@ -43,7 +43,7 @@ def python(text):
 def number(n):
     """ Returns HTML response from URL """
     if n:
-        return f'n is a number'
+        return f'{n} is a number'
 
 
 # Runs if script is executed as main program
