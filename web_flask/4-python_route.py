@@ -8,10 +8,9 @@ from flask import Flask
 app = Flask(__name__)
 
 
-# Routes to a root URL
 @app.route('/', strict_slashes=False)
 def home():
-    """ Returns HTML content """
+    """ Returns HTML response from URL """
     string = "Hello HBNB!"
     return f"{string}"
 
@@ -19,7 +18,7 @@ def home():
 # Routes to a URL of a method.(Meaniful URL / Better user experience)
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
-    """ Returns HTML content """
+    """ Returns HTML response from URL """
     string = "HBNB"
     return f"{string}"
 
@@ -27,7 +26,7 @@ def hbnb():
 # Routes to a URL of a method and uses variable as keyword argument
 @app.route('/c/<string:text>', strict_slashes=False)
 def c(text):
-    """ Returns HTML but replace _ with indent """
+    """ Returns HTML response from URL """
     return f"{text.replace('_', ' ')}"
 
 
@@ -35,19 +34,18 @@ def c(text):
 @app.route('/python/', defaults={'text': 'is cool'}, strict_slashes=False)
 @app.route('/python/<string:text>', strict_slashes=False)
 def python(text):
-    """ Returns HTML content but replace _ with indent"""
+    """ Returns HTML response from URL """
     return f"Python {text.replace('_', ' ')}"
 
 
-# Route to /number method of a URL
-@app.route('/number/<integer:n>', strict_slashes=False)
+# Routes to a URL that triggers the function
+@app.route('/number/<int:n>', strict_slashes=False)
 def number(n):
-    """ Returns HTML content if n is an integer"""
+    """ Returns HTML response from URL """
     if n:
-        return f"{n} is a number"
+        return f'n is a number'
 
 
 # Runs if script is executed as main program
 if __name__ == "__main__":
-    """ Host and Port identities """
     app.run(host='0.0.0.0', port=5000, debug=True)
