@@ -51,7 +51,7 @@ def number(n):
 def number_template(n):
     """ Returns HTML response from Jinja template """
     if n:
-        return render_template('5-number_template.html', n=n)
+        return render_template('5-number.html', n=n)
 
 
 # Runs if script is executed as main program
