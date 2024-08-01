@@ -2,7 +2,7 @@
 
 """ A flask application that returns HTML response """
 
-from flask import Flask
+from flask import Flask, render_template
 
 # Creates the flass instance
 app = Flask(__name__)
