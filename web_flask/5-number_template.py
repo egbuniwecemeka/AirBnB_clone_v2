@@ -49,8 +49,8 @@ def number(n):
 # Routes to a template that triggers the function
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
-    """ Returns HTML response from URL """
-    return render_template('5-number.html', name=n)
+    if n:
+        return render_template('5-number_template', n=n)
 
 
 # Runs if script is executed as main program
