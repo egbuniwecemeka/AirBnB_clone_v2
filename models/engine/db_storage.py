@@ -20,6 +20,7 @@ class DBStorage:
     __session = None
 
     def __init__(self):
+        """ Initializes the data base storage engine """
         user = getenv("HBNB_MYSQL_USER")
         passwd = getenv("HBNB_MYSQL_PWD")
         db = getenv("HBNB_MYSQL_DB")
@@ -37,7 +38,7 @@ class DBStorage:
         """all objects depending of the
         class name (argument cls)
 
-        Returns Dictionary of the class Queried"""
+        Returns Dictionary of all objects of the class name queried"""
         dicts = {}
         if cls:
             if isinstance(cls, str):
@@ -67,18 +68,18 @@ class DBStorage:
         self.__session.commit()
 
     def delete(self, obj=None):
-        """delete an element in the table
+        """deletes an element in the table
         """
         if obj:
-            self.session.delete(obj)
+            self.__session.delete(obj)
 
     def reload(self):
-        """create engine config"""
+        """ Reloads db engine and session """
         Base.metadata.create_all(self.__engine)
-        sec = sessionmaker(bind=self.__engine, expire_on_commit=False)
-        Session = scoped_session(sec)
-        self.__session = Session()
+        session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        self.__session = scoped_session(session_factory)
 
     def close(self):
         """ close current SQLAlchemy session """
-        self.__session.close()
+        if self.__session:
+            self.__session.remove()
