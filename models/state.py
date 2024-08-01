@@ -10,7 +10,7 @@ from os import getenv
 
 class State(BaseModel, Base):
     """ State for MySQL DB
- 
+
         Inherits from MySQLQlchemy Base to MySQL tables
 
         Attribute:
