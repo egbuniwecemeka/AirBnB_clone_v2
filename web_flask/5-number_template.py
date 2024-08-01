@@ -49,6 +49,7 @@ def number(n):
 # Routes to a template that triggers the function
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
+    """ Returns HTML response from Jinja template """
     if n:
         return render_template('5-number_template', n=n)
 
