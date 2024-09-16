@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# A bash script that sets up nginx for deployment of static content
 
 # Upadate dependencies
 sudo apt update
