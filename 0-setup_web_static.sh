@@ -6,6 +6,7 @@ sudo apt update
 # Install nginx
 if ! nginx -v > /dev/null 2>&1; then
     sudo apt-get install -y nginx
+fi
 
 # Check nginx status, start nginx service
 sudo service nginx status || sudo service nginx start
