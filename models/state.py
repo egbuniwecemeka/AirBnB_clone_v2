@@ -32,8 +32,8 @@ class State(BaseModel, Base):
             Getter attribute for Filestorage relationship btw
             states and cities
         """
-        cities_list = []
+        cities = []
         for city in models.storage.all(City).values():
             if city.state_id == self.id:
-                cities_list.append(city)
-        return cities_list
+                cities.append(city)
+        return cities
