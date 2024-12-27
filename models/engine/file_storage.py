@@ -1,77 +1,56 @@
-#!/usr/bin/python3
-""" This module defines a class to manage file storage for hbnb clone """
-import json
+from json import dump, load
+from os.path import exists
 from models.base_model import BaseModel
 from models.user import User
-from models.place import Place
 from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.review import Review
-import shlex
+
+classes = {"BaseModel": BaseModel, "User": User, "State": State}
 
 
 class FileStorage:
-    """This class serializes instances to JSON format/file
-       and deserializes JSON format/file to instances
-    """
+    """serializes instances to JSON and sederialize JSON to instances"""
+
+    # Private class attributes
     __file_path = 'file.json'
     __objects = {}
 
     def all(self, cls=None):
-        """Returns a dictionary
-
-        Args:
-            cls: Filter for class type(optional)
-
-        Return:
-            returns dict of .__object
-        """
-
-        if cls:
-            filtered_objects = {}
-            for key, obj in self.__objects.items():
-                obj_id = key.split('.')
-                if obj_id[0] == cls.__name__:
-                    filtered_objects[key] = obj
-            return (filtered_objects)
-        else:
+        """returns __objects dictionary"""
+        if cls is None:
             return self.__objects
+        
+        filtered_objects = {key: obj for key, obj in self.__objects.items() if isinstance(obj, cls)}
+        return filtered_objects
 
     def new(self, obj):
-        """Adds new object to storage dictionary"""
-        self.all().update({obj.to_dict()['__class__'] + '.' + obj.id: obj})
+        """sets in _objects the obj with key <obj class name>.id"""
+        key = f"{obj.__class__.__name__}.{obj.id}"
+        self.__objects[key] = obj
 
     def save(self):
-        """Saves storage dictionary to file"""
-        with open(FileStorage.__file_path, 'w') as f:
-            temp = {key: obj.to_dict() for key, obj in self.__objects.items()}
-            json.dump(temp, f)
-
+        """Serializes __objects to the JSON file"""
+        with open(self.__file_path, 'w') as file:
+            # Convert each object in __objects to a dictionary
+            dump({k: v.to_dict() for k, v in self.__objects.items()}, file)
+    
     def reload(self):
-        """Loads storage dictionary from file"""
-
-        classes = {
-                    'BaseModel': BaseModel, 'User': User, 'Place': Place,
-                    'State': State, 'City': City, 'Amenity': Amenity,
-                    'Review': Review
-                  }
-        try:
-            with open(FileStorage.__file_path, 'r') as f:
-                temp = json.load(f)
-                for key, val in temp.items():
-                    class_name, obj_id = key.split('.')
-                    obj_cls = classes[class_name]
-                    self.__objects[key] = obj_cls(**val)
-        except FileNotFoundError:
-            pass
-
+        """Deserializes the JSON file to __objects"""
+        if exists(self.__file_path):
+            with open(self.__file_path, 'r') as file:
+                data = load(file)
+                for key, value in data.items():
+                    class_name = value.get('__class__')
+                    if class_name in classes:
+                        self.__objects[key] = classes[class_name](**value)
+    
     def delete(self, obj=None):
-        """ Deletes an obj from __object if present """
-        if obj:
-            key = "{}.{}".format(type(obj).__name__, obj.id)
-            del self.__objects[key]
+        """Deletes an object from _objects instances"""
+        if obj is None:
+            return
+        
+       # Build the key to check for the object in _objects
+        key = f"{obj.__class__.__name__}.{obj.id}"
 
-    def close(self):
-        """ reload to deserialize the JSON file to object """
-        self.reload()
+        # Deletes the object if key found in _objects
+        if key in self.__objects:
+            del self.__objects[key]
